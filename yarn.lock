@@ -1246,7 +1246,7 @@
     cypress "^3.3.1"
     eslint-plugin-cypress "^2.7.0"
 
-"@vue/cli-plugin-eslint@^4.1.0":
+"@vue/cli-plugin-eslint@^4.1.2":
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.1.2.tgz#173d2a40beb7debc03a217db3bb4c67cbf255bd6"
   integrity sha512-j6Z6tyhas7AFBwSvQ8JdKPLfaakZbwmK0+Xk8H6BK1/GrEpSCsb8pzBV8faStbKCPUO9vlKEuO319kHypUTJ1g==
