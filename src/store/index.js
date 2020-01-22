@@ -3,18 +3,9 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-// Status:
-// idle
-// fetchDeck
-// first
-// compare
-// win
-// error
-
 export default new Vuex.Store({
   state: {
     cards: null,
-    cardsLeft: null,
     firstCard: null,
     secondCard: null,
     status: 'idle',
@@ -40,8 +31,6 @@ export default new Vuex.Store({
       commit('updateStatus', 'compare');
 
       if (firstCard.name === secondCard.name) {
-        // TODO: success! give feedback
-
         // Update cards
         const copy = [...cards];
         const firstIndex = cards.findIndex(card => card.uuid === firstCard.uuid);
@@ -58,7 +47,7 @@ export default new Vuex.Store({
       commit('updateSecondCard', null);
 
       if (getters.getUnMatchedCards && getters.getUnMatchedCards.length === 0) {
-        commit('updateStatus', 'win');
+        commit('updateStatus', 'won');
       } else {
         commit('updateStatus', 'idle');
       }
@@ -100,10 +89,11 @@ export default new Vuex.Store({
         }
 
         commit('updateSecondCard', card);
+        commit('updateStatus', 'wait');
 
         setTimeout(() => {
           dispatch('compareCards');
-        }, 1000);
+        }, 600);
       }
     },
     shuffleDeck({ commit, state }) {
@@ -128,14 +118,8 @@ export default new Vuex.Store({
     getCards(state) {
       return state.cards;
     },
-    getCardsLeft(state) {
-      return state.cardsLeft;
-    },
     getFirstCard(state) {
       return state.firstCard;
-    },
-    getMatchedCards(state) {
-      return state.cards && state.cards.filter(card => card.isMatched === true);
     },
     getSecondCard(state) {
       return state.secondCard;
