@@ -3,7 +3,7 @@
   <a
     aria-label="View source on GitHub"
     class="github-corner"
-    href="https://github.com/coltborg"
+    href="https://github.com/coltborg/memory-game"
     rel="noopener noreferrer"
     target="_blank"
   >

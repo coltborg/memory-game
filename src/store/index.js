@@ -60,7 +60,7 @@ export default new Vuex.Store({
       commit('updateStatus', 'fetchDeck');
 
       return new Promise((resolve, reject) => {
-        fetch('http://localhost:8080/data.json')
+        fetch(`${window.location.href}/data.json`)
           .then(response => response.json())
           .then((json) => {
             commit('updateCards', json);
