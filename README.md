@@ -16,6 +16,12 @@ All cards are keyboard accessible. Names of cards are revealed to screen readers
 
 I'm using [Tailwind CSS](https://tailwindcss.com/) for quick utility classes and [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) to layout the cards.
 
+## Deployment
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/503c6994-4ba3-4b3d-9c1b-60b6d6699d13/deploy-status)](https://app.netlify.com/sites/colt-memory-game/deploys)
+
+This project is deployed by [Netlify](https://www.netlify.com/) to [memory-game.coltborg.com](https://memory-game.coltborg.com).
+
 ## Project setup 🏗
 Before doing anything, make sure dependencies are installed.
 
