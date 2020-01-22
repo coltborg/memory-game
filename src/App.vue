@@ -1,89 +1,34 @@
 <template>
-  <div>
-    <header>
-      <h1>App - {{ status }}</h1>
-    </header>
-    <main>
-      <h2>Unmatched Cards</h2>
-      <article
-        v-for="card in unMatchedcards"
+  <div
+    class="min-h-screen mx-auto"
+    style="max-width: 42.5rem;"
+  >
+    <Header
+      v-if="status !== 'won'"
+      @cheat="showAll = !showAll"
+    />
+    <Win
+      v-if="status === 'won'"
+      @play-again="$store.dispatch('newDeck')"
+    />
+    <main
+      v-else
+      class="grid"
+    >
+      <div
+        v-for="card in cards"
         :key="card.uuid"
       >
-        <button
-          type="button"
-          :class="{
-            isFirst:
-              firstCard && card.uuid === firstCard.uuid,
-            isSecond:
-              secondCard && card.uuid === secondCard.uuid
-          }"
-          @click="$store.dispatch('setCard', card)"
-        >
-          {{ card.name }}
-        </button>
-      </article>
-      <h2>Matched cards</h2>
-      <article
-        v-for="card in matchedCards"
-        :key="card.uuid"
-      >
-        <button type="button">
-          {{ card.name }}
-        </button>
-      </article>
-      <div>
-        <img
-          src="svg/back.svg"
-          alt="back of card"
-        >
-        <img
-          src="svg/ace-of-clubs.svg"
-          alt=""
-        >
-        <img
-          src="svg/ace-of-diamonds.svg"
-          alt=""
-        >
-        <img
-          src="svg/ace-of-hearts.svg"
-          alt=""
-        >
-        <img
-          src="svg/ace-of-spades.svg"
-          alt=""
-        >
-        <img
-          src="svg/king-of-clubs.svg"
-          alt=""
-        >
-        <img
-          src="svg/king-of-diamonds.svg"
-          alt=""
-        >
-        <img
-          src="svg/king-of-hearts.svg"
-          alt=""
-        >
-        <img
-          src="svg/king-of-spades.svg"
-          alt=""
-        >
-        <img
-          src="svg/queen-of-clubs.svg"
-          alt=""
-        >
-        <img
-          src="svg/queen-of-diamonds.svg"
-          alt=""
-        >
-        <img
-          src="svg/queen-of-hearts.svg"
-          alt=""
-        >
-        <img
-          src="svg/queen-of-spades.svg"
-          alt=""
-        >
+        <Card
+          :first-uuid="firstCard && firstCard.uuid"
+          :is-matched="card.isMatched"
+          :name="card.name"
+          :second-uuid="secondCard && secondCard.uuid"
+          :show-all="showAll"
+          :slug="kebabCase(card.name)"
+          :uuid="card.uuid"
+          @activate-card="$store.dispatch('setCard', card)"
+        />
       </div>
     </main>
   </div>
@@ -91,13 +36,26 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import Card from '@/components/Card.vue';
+import Header from '@/components/Header.vue';
+import Win from '@/components/Win.vue';
 
 export default {
   name: 'App',
+  components: {
+    Card,
+    Header,
+    Win,
+  },
+  data() {
+    return {
+      showAll: false,
+    };
+  },
   computed: {
     ...mapGetters({
+      cards: 'getCards',
       firstCard: 'getFirstCard',
-      matchedCards: 'getMatchedCards',
       secondCard: 'getSecondCard',
       status: 'getStatus',
       unMatchedcards: 'getUnMatchedCards',
@@ -106,19 +64,23 @@ export default {
   created() {
     this.$store.dispatch('newDeck');
   },
+  methods: {
+    kebabCase(value) {
+      if (!value) {
+        return '';
+      }
+
+      return value.replace(/\s/g, '-');
+    },
+  },
 };
 </script>
 
 <style scoped>
-.isFirst {
-  color: red;
-  background-color: yellow;
-  font-size: 2rem;
-}
-
-.isSecond {
-  color: blue;
-  background-color: green;
-  font-size: 2rem;
+.grid {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px;
+  grid-template-rows: repeat(4, 150px);
+  grid-gap: 1rem;
 }
 </style>
