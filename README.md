@@ -1,4 +1,6 @@
-# memory-game
+# Memory Game ♠️
+
+A memory card game built with [Vue.js](https://vuejs.org/), [Vuex](https://vuex.vuejs.org/), and [Tailwind CSS](https://tailwindcss.com/).
 
 ## Project setup
 ```
