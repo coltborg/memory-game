@@ -7,7 +7,7 @@
     </h1>
     <div class="text-center">
       <button
-        class="px-2 py-1 text-xs font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700"
+        class="px-2 py-1 text-xs font-bold text-white bg-indigo-600 rounded-full hover:bg-indigo-700"
         type="button"
         @click="$emit('cheat')"
       >
