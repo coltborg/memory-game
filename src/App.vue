@@ -31,12 +31,14 @@
         />
       </div>
     </main>
+    <GithubCorner />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import Card from '@/components/Card.vue';
+import GithubCorner from '@/components/GithubCorner.vue';
 import Header from '@/components/Header.vue';
 import Win from '@/components/Win.vue';
 
@@ -44,6 +46,7 @@ export default {
   name: 'App',
   components: {
     Card,
+    GithubCorner,
     Header,
     Win,
   },
